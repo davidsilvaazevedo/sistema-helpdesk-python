@@ -17,12 +17,13 @@ from services.auth_service import AuthService
 from utils.logger import configurar_logging
 from views.login_view import LoginView
 from views.main_view import MainView
-from views.styles import centralizar_janela, configurar_estilos
+from views.styles import centralizar_janela, configurar_estilos, escalar
 
 logger = logging.getLogger(__name__)
 
-TAMANHO_LOGIN = (460, 540)
-TAMANHO_PRINCIPAL = (1320, 800)
+# Tamanhos de referência para escala 100% (são ajustados à escala da tela)
+TAMANHO_PRINCIPAL = (1280, 780)
+TAMANHO_MINIMO_PRINCIPAL = (960, 600)
 
 
 def ativar_alta_resolucao() -> None:
@@ -31,7 +32,7 @@ def ativar_alta_resolucao() -> None:
         from ctypes import windll  # type: ignore[attr-defined]
         windll.shcore.SetProcessDpiAwareness(1)
     except (ImportError, AttributeError, OSError):
-        pass  # não é Windows ou a API não está disponível: segue normalmente
+        logger.debug("Ajuste de DPI não disponível neste sistema")
 
 
 class HelpDeskApp(tk.Tk):
@@ -50,17 +51,39 @@ class HelpDeskApp(tk.Tk):
 
     def mostrar_login(self) -> None:
         self.title(APP_NAME)
-        self.minsize(420, 500)
-        self.resizable(False, False)
-        centralizar_janela(self, *TAMANHO_LOGIN)
+        self.state("normal")
+        self.minsize(1, 1)
         self._trocar_tela(LoginView(self, on_login_sucesso=self._ao_logar))
+        self.geometry("")             # libera o tamanho anterior
+        centralizar_janela(self)      # usa o tamanho que o login precisa
+        self.resizable(False, False)
 
     def _ao_logar(self, usuario: Usuario) -> None:
         self.resizable(True, True)
-        self.minsize(1100, 680)
-        centralizar_janela(self, *TAMANHO_PRINCIPAL)
         self.title(f"{APP_NAME} — {usuario.nome} ({usuario.perfil})")
         self._trocar_tela(MainView(self, usuario, on_logout=self.mostrar_login))
+
+        largura_tela, altura_tela = self.winfo_screenwidth(), self.winfo_screenheight()
+        self.minsize(min(escalar(self, TAMANHO_MINIMO_PRINCIPAL[0]), largura_tela - 40),
+                     min(escalar(self, TAMANHO_MINIMO_PRINCIPAL[1]), altura_tela - 80))
+        largura, altura = (escalar(self, v) for v in TAMANHO_PRINCIPAL)
+        self.geometry("")
+        self.update_idletasks()
+        # Em telas menores que o tamanho ideal, abre maximizado
+        if largura >= largura_tela - 40 or altura >= altura_tela - 80:
+            centralizar_janela(self, largura, altura)
+            self._maximizar()
+        else:
+            self.geometry(f"{largura}x{altura}")
+            x = (largura_tela - largura) // 2
+            y = max((altura_tela - altura) // 2 - 20, 0)
+            self.geometry(f"{largura}x{altura}+{x}+{y}")
+
+    def _maximizar(self) -> None:
+        try:
+            self.state("zoomed")  # Windows / macOS
+        except tk.TclError:
+            self.attributes("-zoomed", True)  # Linux
 
     def report_callback_exception(self, exc, val, tb) -> None:  # noqa: ANN001
         """Captura erros não tratados da interface: registra no log e avisa o usuário."""
