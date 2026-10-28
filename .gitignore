@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ambientes virtuais
+venv/
+.venv/
+env/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+
+# Banco de dados local (gerado automaticamente pelo app)
+database/*.db
+database/*.db-journal
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Testes e cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build / distribuição
+build/
+dist/
+*.egg-info/
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+
+# Sistema operacional e temporários
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
