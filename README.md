@@ -92,17 +92,15 @@ Quando adicionar as imagens na pasta screenshots, apague esta linha de comentár
 
 ### Login
 ![Tela de login](<img width="763" height="770" alt="Tela de login" src="https://github.com/user-attachments/assets/e0cb9f55-900d-47b2-9d94-25e101b123b2" />
-))
 
 ### Dashboard
-![Dashboard](<img width="1905" height="1071" alt="Dashboard" src="https://github.com/user-attachments/assets/3a4d0906-abe7-4841-ba67-d1a422ff2ce6" />)
+<img width="1905" height="1071" alt="Dashboard" src="https://github.com/user-attachments/assets/3a4d0906-abe7-4841-ba67-d1a422ff2ce6" />
 
 ### Lista de chamados
-![Lista de chamados](<img width="1917" height="1071" alt="lista de chamado" src="https://github.com/user-attachments/assets/ae088ec7-4719-40b1-9a0e-c240e15e3097" />)
+<img width="1917" height="1071" alt="lista de chamado" src="https://github.com/user-attachments/assets/ae088ec7-4719-40b1-9a0e-c240e15e3097" />
 
 ### Novo chamado
-![Novo chamado](<img width="954" height="905" alt="Novo chamado" src="https://github.com/user-attachments/assets/3e21b4de-99e7-4462-a5a6-ef4bdad83272" />
--->
+<img width="954" height="905" alt="Novo chamado" src="https://github.com/user-attachments/assets/3e21b4de-99e7-4462-a5a6-ef4bdad83272" />
 
 ## ⚙️ Como instalar
 
