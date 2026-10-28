@@ -85,13 +85,8 @@ As telas não executam SQL e os serviços não dependem do Tkinter. Assim, as re
 
 ## 🖼️ Screenshots
 
-> As imagens serão adicionadas em breve.
-
-<!--
-Quando adicionar as imagens na pasta screenshots, apague esta linha de comentário e a última linha (a que tem -->).
-
 ### Login
-![Tela de login](<img width="763" height="770" alt="Tela de login" src="https://github.com/user-attachments/assets/e0cb9f55-900d-47b2-9d94-25e101b123b2" />
+<img width="763" height="770" alt="Tela de login" src="https://github.com/user-attachments/assets/e0cb9f55-900d-47b2-9d94-25e101b123b2" />
 
 ### Dashboard
 <img width="1905" height="1071" alt="Dashboard" src="https://github.com/user-attachments/assets/3a4d0906-abe7-4841-ba67-d1a422ff2ce6" />
